@@ -92,8 +92,10 @@ public final class MongoConfig {
 
             LOGGER.info("Successfully initialized MongoDB connection pool for database: " + dbName);
 
-            // Create necessary indexes
-            initIndexes();
+            // Create necessary indexes asynchronously in background so app starts immediately
+            Thread indexThread = new Thread(MongoConfig::initIndexes, "mongo-index-init");
+            indexThread.setDaemon(true);
+            indexThread.start();
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Failed to initialize MongoDB client: " + e.getMessage(), e);
             throw new RuntimeException("MongoDB initialization failure", e);
