@@ -1,0 +1,16 @@
+target/
+*.class
+*.war
+*.ear
+*.jar
+.settings/
+.project
+.classpath
+.idea/
+*.iml
+.vscode/
+.env
+*.log
+stitch_extracted/
+*.zip
+*.docx

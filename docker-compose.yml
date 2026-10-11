@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  complaint-portal:
+    build: .
+    container_name: complaint_portal_app
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGODB_URI=mongodb://shubhammunde8767_db_user:EaPaLamw4RqSrRXI@ac-e6zioad-shard-00-00.bzcxrlo.mongodb.net:27017,ac-e6zioad-shard-00-01.bzcxrlo.mongodb.net:27017,ac-e6zioad-shard-00-02.bzcxrlo.mongodb.net:27017/?ssl=true&replicaSet=atlas-9ln9ic-shard-0&authSource=admin&appName=Cluster0
+      - MONGODB_DATABASE=complaint_portal
+      - DEFAULT_ADMIN_EMAIL=admin@college.edu
+      - DEFAULT_ADMIN_PASSWORD=Admin@1234
+    restart: always
