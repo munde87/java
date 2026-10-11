@@ -24,9 +24,6 @@ RUN rm -rf webapps/*
 # Disable Tomcat internal shutdown port 8005 so Render port scanners don't trigger shutdown warnings
 RUN sed -i 's/port="8005"/port="-1"/' conf/server.xml
 
-# Fast boot: skip scanning all JAR files for TLDs to reduce startup time from 35s to under 2s
-RUN echo "tomcat.util.scan.StandardJarScanFilter.jarsToSkip=*.jar" >> conf/catalina.properties
-
 # Copy compiled production WAR as ROOT.war to serve at the root domain '/'
 COPY --from=builder /app/target/complaint-portal.war webapps/ROOT.war
 
